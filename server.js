@@ -24,8 +24,8 @@ STEPS:
 
 //---------------^^^MODEL^^^----------------------------->
 -08. mkdir models 
--09. touch data_Var_Name.js 
-  //at the bottom of file add: "module.exports = data_Var_Name"; 'data_Var_Name' is the same name as the variable declared in server.js(see A.4 below). This allows us to export the internal data to an external file. The purpose of this folder and js file is to separate the data such as arrays, objects, classes, and variables that would normally live in your "/main server.js" file. Ofcourse, this is in effort to keep our code modular "separation of responsibilites," and cleanly formatted.
+-09. touch pokemon.js 
+  //at the bottom of file add: "module.exports = pokemon"; 'pokemon' is the same name as the variable declared in server.js(see A.4 below). This allows us to export the internal data to an external file. The purpose of this folder and js file is to separate the data such as arrays, objects, classes, and variables that would normally live in your "/main server.js" file. Ofcourse, this is in effort to keep our code modular "separation of responsibilites," and cleanly formatted.
 
 -----^^^Sample Data Model: fruits_File_Name.js^^^-------->
     const fruits = [
@@ -154,7 +154,7 @@ sometime after the request is received, but before the final route handler is ca
 
 //-----^^^Sample GET Route to fruits_File_Name.js^^^---------->
     app.get('/fruits', function(req, res){
-        res.render('Index', { passed_To_Index: data_Var_Name }); // The object 'passed_To_Index:' is assigned the value of the variable 'data_Var_Name', and then it is passed to ./views/Index.jsx, for data proccessing instructions using jsx inside of the Index.jsx file. 
+        res.render('Index', { passed_To_Index: pokemon }); // The object 'passed_To_Index:' is assigned the value of the variable 'pokemon', and then it is passed to ./views/Index.jsx, for data proccessing instructions using jsx inside of the Index.jsx file. 
     });
 
     //From Mod2 Week1 Day 2: URL and Query Parameters: Using Data.
@@ -162,14 +162,14 @@ sometime after the request is received, but before the final route handler is ca
 
           app.get('/fruits/:indexOfFruitsArray', function(req, res){
         res.render('Show', { 
-            passed_To_Show: data_Var_Name[req.params.indexOfFruitsArray] // React JS knows to look for data stored in ./models/fruits_File_Name.jsx, because we declared data_Var_Name in Section A.4. 
+            passed_To_Show: pokemon[req.params.indexOfFruitsArray] // React JS knows to look for data stored in ./models/fruits_File_Name.jsx, because we declared pokemon in Section A.4. 
         });
     });
     -Second param must be an OBJECT:        
-    'passed_To_Show:' is the OBJECT. Assigned to this object, is the stored value of the array index of 'data_Var_Name'. 
+    'passed_To_Show:' is the OBJECT. Assigned to this object, is the stored value of the array index of 'pokemon'. 
         Think of it as: 
     let i = req.params.indexOfFruitsArray
-    let 'passed_To_Show:' = data_Var_Name[i]
+    let 'passed_To_Show:' = pokemon[i]
         Where, 'req.params.indexOfFruitsArray' = The user input at the url path ./fruits/:indexOfFruitsArray.
 
 
@@ -181,8 +181,8 @@ sometime after the request is received, but before the final route handler is ca
         } else { //if not checked, req.body.readyToEat is undefined
             req.body.readyToEat = false; //do some data correction
         }
-        data_Var_Name.push(req.body); // Pushes the data collected form the route '/fruits/new' to ./models/fruit_File_Nm
-        console.log(data_Var_Name);
+        pokemon.push(req.body); // Pushes the data collected form the route '/fruits/new' to ./models/fruit_File_Nm
+        console.log(pokemon);
         res.redirect('/fruits'); //send the user back to /fruits
 
     });
@@ -227,8 +227,8 @@ sometime after the request is received, but before the final route handler is ca
     // A.3  // this engine requires the fs module
     const fs = require('fs')
 
-    // A.4  // Imports value of 'module.exports = data_Var_Name' (See step 08.)
-    const data_Var_Name = require('./models/pokemon.js') 
+    // A.4  // Imports value of 'module.exports = pokemon' (See step 08.)
+    const pokemon = require('./models/pokemon.js') 
 
   // B. ---> Create the Express app
     const app = express(); //app is an object. (see step 04.)
@@ -257,6 +257,12 @@ sometime after the request is received, but before the final route handler is ca
     app.get('/', function(req, res){
       res.render('Home',{});
     });
+
+    app.get('/pokemon', function(req, res){
+      res.render('index',{passed_To_Index: pokemon });
+    });
+
+
 
 
   // H. ---> Listen on port defined in .env (See C.)
