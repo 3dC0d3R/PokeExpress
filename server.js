@@ -55,6 +55,7 @@ STEPS:
     
     
 //---------------^^^VIEWS^^^----------------------------->
+
 -10. npm i express-react-views react@16 react-dom@16 --save 
   //Installs 'EXPRESS React Views, react, react-dom' (This will let us make our pages appear in the dom),this is a templating library that allows us to mix data into our html. The HTML will change based on the data! (See D) lesson: Mod2 W1 D4
 
@@ -254,7 +255,7 @@ sometime after the request is received, but before the final route handler is ca
     // Home Page
       // touch /views/Home.jsx, Replace 'View_File_Name' with 'Home'
     app.get('/', function(req, res){
-      res.render('View_File_Name',{});
+      res.render('Home',{});
     });
 
 
