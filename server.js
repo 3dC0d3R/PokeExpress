@@ -205,7 +205,7 @@ sometime after the request is received, but before the final route handler is ca
   //Adds the files in the local repository and stages them for commit. To unstage a file, use 'git reset HEAD YOUR-FILE'.
 4.  commit -m 'Added my projectgit'
   //Commits the tracked changes and prepares them to be pushed to a remote repository. To remove this commit and modify the file, use 'git reset --soft HEAD~1' and commit and add the file again.
-5. git remote add origin git@g3dC0d3R/m2w1d3_First_Express_HW.git# 
+5. git remote add origin git@g3dC0d3R/m2w1d3_First_Express_HW.git
   //Sets the new remote
 6. git remote -v 
   //Verifies the new remote URL
