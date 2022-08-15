@@ -160,17 +160,17 @@ sometime after the request is received, but before the final route handler is ca
     //From Mod2 Week1 Day 2: URL and Query Parameters: Using Data.
     //NOTE: By putting javascript inside of curly braces React knows you want to execute js
 
-          app.get('/fruits/:indexOfFruitsArray', function(req, res){
+          app.get('/fruits/:id', function(req, res){
         res.render('Show', { 
-            passed_To_Show: pokemon[req.params.indexOfFruitsArray] // React JS knows to look for data stored in ./models/fruits_File_Name.jsx, because we declared pokemon in Section A.4. 
+            passed_To_Show: pokemon[req.params.id] // React JS knows to look for data stored in ./models/fruits_File_Name.jsx, because we declared pokemon in Section A.4. 
         });
     });
     -Second param must be an OBJECT:        
     'passed_To_Show:' is the OBJECT. Assigned to this object, is the stored value of the array index of 'pokemon'. 
         Think of it as: 
-    let i = req.params.indexOfFruitsArray
+    let i = req.params.id
     let 'passed_To_Show:' = pokemon[i]
-        Where, 'req.params.indexOfFruitsArray' = The user input at the url path ./fruits/:indexOfFruitsArray.
+        Where, 'req.params.id' = The user input at the url path ./fruits/:id.
 
 
 //-----^^^Sample POST Route to fruits_File_Name.js^^^---------->
@@ -252,17 +252,23 @@ sometime after the request is received, but before the final route handler is ca
     
   // G. ---> Mount routes (app.get)
     
-    // Home Page
+    // Home Route
       // touch /views/Home.jsx, Replace 'View_File_Name' with 'Home'
     app.get('/', function(req, res){
       res.render('Home',{});
     });
 
+    // Index Route
     app.get('/pokemon', function(req, res){
       res.render('index',{passed_To_Index: pokemon });
     });
 
-
+    // Show Route
+    app.get('/fruits/:id', function(req, res){
+      res.render('Show', { 
+          passed_To_Show: pokemon[req.params.id]
+      });
+  });
 
 
   // H. ---> Listen on port defined in .env (See C.)
