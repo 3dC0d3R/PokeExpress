@@ -264,7 +264,7 @@ sometime after the request is received, but before the final route handler is ca
     });
 
     // Show Route
-    app.get('/fruits/:id', function(req, res){
+    app.get('/pokemon/:id', function(req, res){
       res.render('Show', { 
           passed_To_Show: pokemon[req.params.id]
       });

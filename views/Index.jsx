@@ -19,7 +19,7 @@ const img_Size = {width:'128px',height:'128px'};
                                           {pokemon.name}
                                       </a>
                                       <br></br>
-                                      <img src={pokemon.img} alt={pokemon.name} style={img_Size}></img>
+                                      <a  href={`/pokemon/${i}`} ><img src={pokemon.img} alt={pokemon.name} style={img_Size}/></a>
                                   </li>
                               );
                           })}
