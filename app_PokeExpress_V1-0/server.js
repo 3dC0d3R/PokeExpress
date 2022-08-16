@@ -258,11 +258,6 @@ sometime after the request is received, but before the final route handler is ca
       res.render('Home',{});
     });
 
-    // NEW Route
-    app.get('/pokemon/new', (req, res) => {
-      res.render('New', {}); // This will allow the user to add data to the array stored in ./models/fruits_File_Name.js using ./views/New.jsx. 
-  });
-
     // Index Route
     app.get('/pokemon', function(req, res){
       res.render('index',{passed_To_Index: pokemon });
@@ -273,14 +268,6 @@ sometime after the request is received, but before the final route handler is ca
       res.render('Show', { 
           passed_To_Show: pokemon[req.params.id]
       });
-  });
-
-    // Post Route
-    app.post('/pokemon', (req, res)=>{
-      pokemon.push(req.body); // Pushes the data collected form the route '/fruits/new' to ./models/fruit_File_Nm
-      console.log(pokemon);
-      res.redirect('/pokemon'); //send the user back to /fruits
-
   });
 
 
